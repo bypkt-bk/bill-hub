@@ -1,7 +1,371 @@
 ---
-import Header from "@/components/organisms/header.vue";
 import Navigation from "@/components/organisms/navigation.vue";
+import DataTable from "@/components/organisms/store-table.tsx";
+import { Status } from "@/lib/shared";
+import Header from "../organisms/header.vue";
+
+const store = {
+  id: 1,
+  name: "SuperStore",
+  address: "123 Market St, Cityville, Country",
+  owner: [
+    {
+      id: 1001,
+      email: "owner@example.com",
+      name: "John Doe",
+      taxId: "123-456-789",
+      phoneNumber: "555-1234",
+      ownedStores: [],
+      adminStores: [],
+    },
+  ],
+  admin: [
+    {
+      id: 2001,
+      email: "admin1@example.com",
+      name: "Jane Smith",
+      taxId: "987-654-321",
+      phoneNumber: "555-5678",
+      ownedStores: [],
+      adminStores: [],
+    },
+    {
+      id: 2002,
+      email: "admin2@example.com",
+      name: "Bob White",
+      taxId: "123-456-789",
+      phoneNumber: "555-4321",
+      ownedStores: [],
+      adminStores: [],
+    },
+  ],
+  revenue: 5000000,
+  quote: [
+    {
+      id: 1,
+      total: 53000,
+      orderDate: "2025-03-05",
+      shippingOn: "",
+      status: Status.paid,
+      customer: {
+        id: 1,
+        name: "Nicha P.",
+        address: "Pattaya, Thailand",
+      },
+      product: [
+        {
+          quoteId: 1,
+          productId: 205,
+          product: { id: 1, name: "headphone", price: 500 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 2,
+      total: 15000,
+      orderDate: "2025-03-06",
+      shippingOn: "2025-03-09",
+      status: Status.paid,
+      customer: {
+        id: 2,
+        name: "John D.",
+        address: "Bangkok, Thailand",
+      },
+      product: [
+        {
+          quoteId: 2,
+          productId: 314,
+          product: { id: 2, name: "Guitar", price: 15000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 3,
+      total: 8000,
+      orderDate: "2025-03-07",
+      shippingOn: "2025-03-10",
+      status: Status.unpaid,
+      customer: {
+        id: 3,
+        name: "Alice W.",
+        address: "Chiang Mai, Thailand",
+      },
+      product: [
+        {
+          quoteId: 3,
+          productId: 1,
+          product: { id: 3, name: "Bear", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 4,
+      total: 20000,
+      orderDate: "2025-03-08",
+      shippingOn: "2025-03-11",
+      status: Status.paid,
+      customer: {
+        id: 4,
+        name: "Bob B.",
+        address: "Phuket, Thailand",
+      },
+      product: [
+        {
+          quoteId: 4,
+          productId: 2,
+          product: { id: 4, name: "Smartwatch", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 1,
+      total: 53000,
+      orderDate: "2025-03-05",
+      shippingOn: "",
+      status: Status.paid,
+      customer: {
+        id: 1,
+        name: "Nicha P.",
+        address: "Pattaya, Thailand",
+      },
+      product: [
+        {
+          quoteId: 1,
+          productId: 205,
+          product: { id: 1, name: "headphone", price: 500 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 2,
+      total: 15000,
+      orderDate: "2025-03-06",
+      shippingOn: "2025-03-09",
+      status: Status.paid,
+      customer: {
+        id: 2,
+        name: "John D.",
+        address: "Bangkok, Thailand",
+      },
+      product: [
+        {
+          quoteId: 2,
+          productId: 314,
+          product: { id: 2, name: "Guitar", price: 15000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 3,
+      total: 8000,
+      orderDate: "2025-03-07",
+      shippingOn: "2025-03-10",
+      status: Status.unpaid,
+      customer: {
+        id: 3,
+        name: "Alice W.",
+        address: "Chiang Mai, Thailand",
+      },
+      product: [
+        {
+          quoteId: 3,
+          productId: 1,
+          product: { id: 3, name: "Bear", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 4,
+      total: 20000,
+      orderDate: "2025-03-08",
+      shippingOn: "2025-03-11",
+      status: Status.paid,
+      customer: {
+        id: 4,
+        name: "Bob B.",
+        address: "Phuket, Thailand",
+      },
+      product: [
+        {
+          quoteId: 4,
+          productId: 2,
+          product: { id: 4, name: "Smartwatch", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 1,
+      total: 53000,
+      orderDate: "2025-03-05",
+      shippingOn: "",
+      status: Status.paid,
+      customer: {
+        id: 1,
+        name: "Nicha P.",
+        address: "Pattaya, Thailand",
+      },
+      product: [
+        {
+          quoteId: 1,
+          productId: 205,
+          product: { id: 1, name: "headphone", price: 500 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 2,
+      total: 15000,
+      orderDate: "2025-03-06",
+      shippingOn: "2025-03-09",
+      status: Status.paid,
+      customer: {
+        id: 2,
+        name: "John D.",
+        address: "Bangkok, Thailand",
+      },
+      product: [
+        {
+          quoteId: 2,
+          productId: 314,
+          product: { id: 2, name: "Guitar", price: 15000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 3,
+      total: 8000,
+      orderDate: "2025-03-07",
+      shippingOn: "2025-03-10",
+      status: Status.unpaid,
+      customer: {
+        id: 3,
+        name: "Alice W.",
+        address: "Chiang Mai, Thailand",
+      },
+      product: [
+        {
+          quoteId: 3,
+          productId: 1,
+          product: { id: 3, name: "Bear", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 4,
+      total: 20000,
+      orderDate: "2025-03-08",
+      shippingOn: "2025-03-11",
+      status: Status.paid,
+      customer: {
+        id: 4,
+        name: "Bob B.",
+        address: "Phuket, Thailand",
+      },
+      product: [
+        {
+          quoteId: 4,
+          productId: 2,
+          product: { id: 4, name: "Smartwatch", price: 8000 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+    {
+      id: 1,
+      total: 53000,
+      orderDate: "2025-03-05",
+      shippingOn: "",
+      status: Status.paid,
+      customer: {
+        id: 1,
+        name: "Nicha P.",
+        address: "Pattaya, Thailand",
+      },
+      product: [
+        {
+          quoteId: 1,
+          productId: 205,
+          product: { id: 1, name: "headphone", price: 500 },
+          quantity: 1,
+        },
+      ],
+      storeId: 1,
+    },
+  ],
+};
 ---
 
-<Header client:load />
-<Navigation client:load />
+<Header />
+<div class="store-cotainer">
+  <div class="navigation">
+    <Navigation client:load />
+  </div>
+  <div class="data-container">
+    <DataTable client:load quote={store.quote} name={store.name} />
+  </div>
+</div>
+
+<style>
+  .store-cotainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 80px 0px 80px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+  }
+  .data-container {
+    display: flex;
+    width: 100%;
+    min-width: 300px;
+    padding: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    border-radius: 20px;
+    border: 1px solid #3c3c3c;
+    background: #242424;
+  }
+  @media (max-width: 440px) {
+    .data-container {
+      padding: 20px;
+    }
+  }
+  @media (max-width: 563px) {
+    .store-cotainer {
+      padding: 10px 10px;
+    }
+  }
+  @media (max-width: 454px) {
+    .navigation {
+      overflow-x: scroll;
+    }
+    .navigation::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>

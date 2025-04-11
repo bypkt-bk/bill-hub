@@ -1,8 +1,8 @@
 <template>
   <header>
     <a class="logo" href="/">
-      <img src="/src/assets/billhub.svg" alt="logo" width="40" />
-      <h4>Bill Hub</h4>
+      <img :src="logo.src" alt="logo" width="40" />
+      <h4>QUOT</h4>
     </a>
     <nav class="desktop-nav">
       <ul>
@@ -26,7 +26,7 @@
 import { Moon, Sun, ChevronDown, Menu } from "lucide-vue-next";
 import { ref } from "vue";
 import Button from "@/components/atoms/button.vue";
-
+import logo from "@/assets/quot.svg";
 const isDarkMode = ref(false);
 
 function toggleTheme() {
@@ -49,7 +49,7 @@ header {
   display: flex;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 .desktop-nav {
   display: flex;

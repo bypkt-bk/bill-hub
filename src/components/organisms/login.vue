@@ -2,9 +2,9 @@
   <div>
     <div class="container">
       <h3 class="click-text">Check it. Print it.</h3>
-      <h3 class="login-text">Log in to your BillHub account</h3>
+      <h3 class="login-text">Log in to your QUOT account</h3>
       <Button class="btn" @click="handleClick()">
-        <img src="src/assets/google.svg" alt="Google" />
+        <img :src="google.src" alt="Google" />
         Continue with Google
       </Button>
     </div>
@@ -13,9 +13,30 @@
 
 <script setup>
 import Button from "@/components/atoms/button.vue";
+import google from "@/assets/google.svg";
+import { signInWithGoogle } from "@/firebase/auth";
+import { trpc } from "@/lib/trpc";
 
 function handleClick() {
-  window.location.href = "/home/1";
+  signInWithGoogle()
+    .then(async ({ user, token }) => {
+      console.log("User signed in successfully");
+      const User = await trpc.getUserById.query({
+        id: user.uid,
+      });
+      if (!User) {
+        await trpc.createUser.mutate({
+          googleId: user.uid,
+          email: user.email,
+          name: user.displayName,
+        });
+        return (window.location.href = "/home/1");
+      }
+      window.location.href = "/home/1";
+    })
+    .catch((error) => {
+      console.error("Error signing in with Google:", error);
+    });
 }
 </script>
 
